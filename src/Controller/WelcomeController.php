@@ -17,4 +17,15 @@ class WelcomeController extends AbstractController{
         ]);
 
     }
+    /** 
+     * @Route("/hello/{name}", name="hello_user",  requirements={"name"="[A-Z]{3,8}"}) 
+     */
+    public function helloUser(string $name="tout le monde"){
+        
+        $na=lcfirst ( $name );
+        return $this->render('welcome/hello.html.twig',[
+            'name'=>$na,
+        ]);
+        // , requirements="name"="[A-Z]{3-8}"
+    }
 }
