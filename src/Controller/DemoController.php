@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class DemoController extends AbstractController
 {
@@ -29,5 +32,26 @@ class DemoController extends AbstractController
     public function notfound()
     {
         throw $this->createNotFoundException();
+    }
+
+    
+    
+    /**
+     * @Route("/voir-session" , name="show_session")
+     */
+    public function showSession(SessionInterface $session)
+    {
+        $name=$session->get('name');
+        dump($name);
+        return new Response("nom session :".$name);
+    }
+     /**
+     * @Route("/mettre-en-session/{name}", name="put_session")
+     */
+    public function putSession(SessionInterface $session, $name)
+    {
+       $session->set('name', $name);
+       return new Response("nom session :".$name);
+        
     }
 }
