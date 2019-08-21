@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<h1 class='text-center mb-5 text-primary'> voir le {{name}} </h1>
+<div class="container">
+<table class="table table-striped shadow " >
+    <thead>
+        <tr class="bg-info">
+            <td>name</td>
+            <td>slug</td>
+            <td>description</td>
+            <td>prix</td>
+
+        </tr>
+    </thead>
+    <tbody>
+         <tr>
+            <td>{{name}}</td>
+            <td>{{slug}}</td>
+            <td>{{description}}</td>
+            <td>{{prix}}</td>
+
+        </tr>
+
+    
+    </tbody>
+</table>
+</div>
+{% endblock %}
