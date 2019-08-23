@@ -24,7 +24,11 @@
                      </li>
                      <li class="nav-item">
                          <a class="nav-link text-white 
-                          {% if app.request.attributes.get('_route') == 'app_product_creat' %}  active {% endif %}" href="{{path('app_product_creat')}}">creat</a>
+                          {% if app.request.attributes.get('_route') == 'app_product_create' %}  active {% endif %}" href="{{path('app_product_create')}}">creat</a>
+                     </li>
+                    <li class="nav-item">
+                         <a class="nav-link text-white 
+                          {% if app.request.attributes.get('_route') == 'app_contact_contact' %}  active {% endif %}" href="{{path('app_contact_contact')}}">creat</a>
                      </li>
                 
                 
@@ -43,11 +47,12 @@
             {% endfor %}
         {% endfor %}
         
-{% block body %}
+    {% block body %}
             
     {% endblock %}
     <footer>
-    <p class="text-center">Copyrigth &copy; </p>
+    
+    <p class="text-center"><br>Copyrigth &copy; </p>
     
     </footer>
 {% block javascripts %}

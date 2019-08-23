@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use App\Entity\Product;
+use App\Form\ProductType;
 
 class ProductController extends AbstractController
 {
@@ -22,6 +25,29 @@ class ProductController extends AbstractController
         ];
        
     }
+
+    /**
+     * @Route("/product/creation")
+     */
+    public function create(Request $request)
+    {
+            $product=new Product();
+
+        $form = $this->createForm(ProductType::class, $product);
+            
+        //
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            dump($form->getData());
+
+        }
+
+        return $this->render('product/create.html.twig', 
+            ['form' => $form->createView(),]
+        );
+    }
+
+
     /**
      * @Route ("/product/random")
      */
@@ -82,27 +108,7 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('app_product_list');
     } 
 
-    /**
-     * @Route ("/product/creation")
-     */
-    public function creat(Request $request=null){
-        
-        dump($request);
-
-        $name=implode('',[$request->get('name')]);
-        $slug=implode('',[$request->get('slug')]);
-        $description=implode('',[$request->get('description')]);
-        $prix=implode('',[$request->get('prix')]);
-        
-        $post=['name'=>$name, 'slug'=>$slug, 'description'=>$description, 'prix'=>$prix];
-
-        dump($post);
-
-        array_push($this->products, $post);
-        
-        dump($this->products);
-        return $this->render('product/todo.html.twig');
-    }
+    
 
 
 
@@ -134,6 +140,8 @@ class ProductController extends AbstractController
 
         return $this->json($this->products);
     }
+
+    
    
     
 

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+           
+          <div class="container">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                 {{ form_widget(form) }}
+                 <div class="d-flex justify-content-center">
+                        <button class="btn btn-info ">creer le produit</button>
+                 <div>
+            {{ form_end(form) }}
+            </div>
+            
+
+           
+
+ {% endblock %}
